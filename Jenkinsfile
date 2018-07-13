@@ -26,5 +26,10 @@ pipeline {
         }
       }
     }
+    stage('serial build') {
+      steps {
+        sh 'echo "This is Serial build"'
+      }
+    }
   }
 }
