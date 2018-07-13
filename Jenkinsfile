@@ -8,8 +8,22 @@ pipeline {
   }
   stages {
     stage('Build') {
-      steps {
-        sh 'mvn -B -DskipTests clean package'
+      parallel {
+        stage('Build') {
+          steps {
+            sh 'mvn -B -DskipTests clean package'
+          }
+        }
+        stage('Shell test 1') {
+          steps {
+            sh 'hostname -f'
+          }
+        }
+        stage('shell test 2') {
+          steps {
+            sh 'uptime'
+          }
+        }
       }
     }
   }
